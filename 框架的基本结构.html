@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    (function(window){
+        var JiaGou=function(){
+
+        };
+        JiaGou.extend=function(){
+            console.log(1)
+        };
+        JiaGou.each=function(){
+            console.log(2)
+        };
+        JiaGou.prototype={
+            constructor:JiaGou
+        }
+        JiaGou.prototype.extend=JiaGou.extend;
+        JiaGou.prototype.each=JiaGou.each;
+        window.$=window.JiaGou=JiaGou;
+    })(window);
+    $.extend();
+    $.each();
+    var a=new JiaGou();
+    a.extend();
+    a.each();
+</script>
+</body>
+</html>

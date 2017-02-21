@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //   三种继承模式：原型式继承，混入式继承，经典继承
+
+    //一、原型式继承
+    function Person(name, age) {
+        this.name = name;
+        this.age = age
+    }
+    Person.prototype = {
+        say: function () {
+            console.log("大家好！我是" + this.name + "，今年" + this.age + "岁了！");
+        }
+    }
+    var p = new Person("张三", 18);
+    p.say();
+    //这里实例对象p的say方法就继承自他的原型对象Person.prototype ,即原型继承
+
+    //二混入式继承
+    var yuanGong = {
+        name: "张三",
+        age: 18,
+        gongHao: 1233442,
+        say: function () {
+            console.log("大家好！我是" + this.name + "，今年" + this.age + "岁了！");
+        }
+    }
+    var obj = {};
+    for (var k in yuanGong) {
+        obj[k] = yuanGong[k];
+    }
+    console.log(obj);
+//    这样obj就有了yuanGong的属性和方法，即混入式继承
+
+//    三经典式继承
+    var person = {
+        name: "李四",
+        age: 2,
+        birthday: "2016年1月1日",
+        sing: function () {
+            console.log("啊？？？？？？哦？？？")
+        }
+    }
+    var obj1=Object.create(person);
+    console.log(obj1);
+    //这样person就是obj1的原型对象。obj1能使用其中的属性和方法，即实现了继承
+</script>
+</body>
+</html>
