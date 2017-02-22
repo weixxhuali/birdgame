@@ -12,8 +12,10 @@
         this.bird = null;
         this.objsarr = [];
         this.starttime = new Date();
+        this.origtime=this.starttime;
         this.curtime = null;
         this.btn=null;
+        this.time=null;
     }
     Game.prototype = {
         constructor: Game,
@@ -23,6 +25,7 @@
             this.btn=obj.btn;
             this.dv=obj.dv;
             this.ctx=this.cv.getContext("2d");
+
             for (var i = 0; i < 3; i++) {
                 this.objsarr.push(
                     new Fly.Sky({
@@ -32,6 +35,7 @@
                     })
                 )
             }
+
 
             for (var i = 0; i < 6; i++) {
                 this.objsarr.push(
@@ -43,6 +47,9 @@
                     })
                 )
             }
+
+            this.time=new Fly.Time({ctx:this.ctx,origtime:this.origtime});
+            this.objsarr.push(this.time);
 
             for (var i = 0; i < 5; i++) {
                 this.objsarr.push(
@@ -71,13 +78,28 @@
                     that.ctx.clearRect(0, 0, that.cv.width, that.cv.height);
                     that.ctx.beginPath();
                     that.ctx.save();
+
+
+
+
+
+
                     that.objsarr.forEach(function (obj) {
                         obj.draw(interval);
                     })
+
+
+
                     that.bird.draw(interval);
+
                     if (that.bird.y <= 0 || that.bird.y >= that.cv.height - imgdata.land.height || that.ctx.isPointInPath(that.bird.x, that.bird.y)) {
                         that.flag = false;
                     }
+
+
+
+
+
                     that.ctx.restore();
                     if (that.flag) {
                         window.requestAnimationFrame(render);

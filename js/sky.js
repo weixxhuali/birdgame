@@ -18,7 +18,6 @@
         draw:function(interval){
             this.s+=this.v*interval;
             this.ctx.drawImage(this.image,this.x+this.s,0,this.imgW,this.imgH);
-
             if(this.s<-this.imgW){this.s=0}
         }
     }
